@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000;
+    position: relative;
+    z-index: 10;
+}
+
+.logo img {
+    height: 90px;
+}
+
+.menu-toggle img{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -200px; /* 처음에는 화면 밖에 숨김 */
+    width: 180px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+    transition: right 0.4s ease;
+    z-index: 1000;
+}
+
+.side-menu.show {
+    right: 0; /* 열릴 때 오른쪽으로 슬라이드 */
+}
+
+.side-menu a {
+    color: white;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.side-menu a:hover {
+    color: #adff2f;
+}
+
+.close-btn {
+    align-self: flex-end;
+    font-size: 3rem;
+    background: none;
+    color: white;
+    border: none;
+    margin: 15px;
+    cursor: pointer;
+}
+
+/***************************************/
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    margin-bottom: 180px;
+}
+
+.hero video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/***************************************/
+.brand-philosophy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 20px;
+    max-width: 1400px;
+    margin: 0 auto 220px;
+    color: #222;
+    font-family: 'Arial Black', sans-serif;
+}
+
+/* 초기 상태는 opacity 0, transform으로 위치 이동 (스크롤 애니메이션용) */
+.animate-on-scroll {
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
+
+/* 타이틀 */
+.title.animate-on-scroll {
+    transform: translateY(100px);
+    font-size: 140px;
+    margin-bottom: 60px;
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* brand-philosophy 섹션의 타이틀 */
+.brand-philosophy .title.animate-on-scroll {
+    color: rgb(0, 255, 34); /* 기존 녹색 유지 */
+}
+
+/* energy-lineup-section 섹션의 타이틀 */
+.energy-lineup-section .title.animate-on-scroll {
+    color: #ffffff; 
+}
+
+.title.animate-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 몬스터 이미지 */
+.monster-image.animate-on-scroll {
+    transform: translateX(-300px);
+}
+
+.monster-image.animate-on-scroll.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 텍스트 내용 */
+.text-content.animate-on-scroll {
+    transform: translateX(50px);
+}
+
+.text-content.animate-on-scroll.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* content-wrapper 레이아웃 유지 */
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.monster-image {
+    flex: 1;
+}
+
+.monster-image img {
+    max-width: 80%;
+    height: auto;
+    display: block;
+}
+
+.text-content {
+    color: white;
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.6;
+    padding-left: 20px;
+}
+
+/***************************************/
+
+.energy-lineup-section {
+    margin-bottom: 180px;
+    padding: 100px 20px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+}
+
+.energy-lineup-section .title {
+    font-size: 140px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s;
+}
+
+.lineup-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    flex-wrap: wrap;
+}
+
+.lineup-card {
+    background: #111;
+    border-radius: 20px;
+    padding: 30px 30px;
+    border: 3px solid transparent;
+    width: 250px;
+    transition: 0.4s ease;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.lineup-card img {
+    width: 100%;
+    transition: 0.4s ease;
+}
+
+.lineup-card .label {
+    margin-top: 30px;
+    font-size: 1.1rem;
+    transition: 0.4s ease;
+}
+
+/* 🟢 호버 효과 */
+
+.lineup-card:hover img {
+    filter: drop-shadow(0 0 12px #00ff00);
+}
+
+/*.lineup-card.original:hover {
+    border-image: linear-gradient(45deg, #00ff00, #66ff66) 1;
+}*/
+
+.lineup-card.original:hover .label {
+    background: linear-gradient(80deg, #00ff00, #f0ff20);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/*.lineup-card.ultra:hover {
+    border-image: linear-gradient(45deg, #dddddd, #ffffff) 1;
+}*/
+
+.lineup-card.ultra:hover .label {
+    background: linear-gradient(80deg, #727272, #ffffff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/*.lineup-card.juice:hover {
+    border-image: linear-gradient(45deg, #ff6a00, #ff99cc) 1;
+}*/
+
+.lineup-card.juice:hover .label {
+    background: linear-gradient(45deg, #ff6a00, #ff99cc);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* 🌀 스크롤 애니메이션 active 처리 */
+.animate-on-scroll.active {
+    opacity: 150;
+    transform: translateY(0);
+    transition: all 1s ease-out;
+}
+
+/***************************************/
+
+.moments-section {
+    /*padding: 60px 20px;*/
+    text-align: center;
+    color: #fff;
+}
+
+.moments-title {
+    font-size: 100px; /* 타이틀 크기 조정 */
+    margin-bottom: 40px;
+    color: rgb(0, 255, 34); /* 타이틀 색상 */
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+}
+
+.moments-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2x2 배열을 위해 2개의 동일한 너비의 열 설정 */
+    gap: 0px; /* 이미지 간 간격 */
+    max-width: 1920px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.moments-grid img {
+    width: 100%; /* 그리드 아이템에 꽉 차게 */
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease; /* 호버 애니메이션 추가 */
+    transform-origin: center; /* 중앙 기준으로 확대 */
+}
+
+.moments-grid img:hover {
+    transform: scaleX(1.1); /* 호버 시 가로로 1.1배 확대 */
+}
