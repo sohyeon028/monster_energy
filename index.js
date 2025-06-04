@@ -24,3 +24,28 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 });
+
+// 로고 축소
+    const header = document.querySelector('.army-header');
+    window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        header.classList.add('shrink');
+    } else {
+        header.classList.remove('shrink');
+    }
+    });
+
+  // Mission 나타나기
+    const missionIcons = document.querySelector('.mission-icons');
+    const historyItems = document.querySelectorAll('.history-item');
+
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        }
+    });
+    }, { threshold: 0.3 });
+
+    observer.observe(missionIcons);
+    historyItems.forEach(item => observer.observe(item));
