@@ -1,4 +1,3 @@
-// index.js
 function toggleMenu() {
     const menu = document.getElementById('sideMenu');
     menu.classList.toggle('show');
