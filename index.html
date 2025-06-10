@@ -213,5 +213,19 @@
 
 
 <script src="index.js"></script>
+<script>
+function toggleMenu() {
+    const sideMenu = document.getElementById('sideMenu');
+    sideMenu.classList.toggle('show');
+}
+
+// ESC 키를 눌렀을 때도 메뉴가 닫히도록 추가
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const sideMenu = document.getElementById('sideMenu');
+        sideMenu.classList.remove('show');
+    }
+});
+</script>
 </body>
 </html>
