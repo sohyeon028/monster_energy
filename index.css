@@ -335,6 +335,9 @@ header {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
+.army-logo {
+    transition: transform 0.3s ease;
+}
 
 .army-title h2 {
     letter-spacing: 1px;
@@ -565,7 +568,8 @@ header {
         font-size: 12px;
     }
 }
-/***************************************/
+
+
 .product-nav {
     position: fixed;
     right: 30px;

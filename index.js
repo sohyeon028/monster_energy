@@ -163,21 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(armyTitle);
     }
 
-    // moments-section 아래에서 위로 등장 효과
-    const momentsSection = document.querySelector('.moments-section');
-    if (momentsSection) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                } else {
-                    entry.target.classList.remove('visible');
-                }
-            });
-        }, { threshold: 0.3 });
-        observer.observe(momentsSection);
-    }
-
     // animate-on-scroll (기존 스크롤 애니메이션)
     const observerOptions = {
         threshold: 0.3,
@@ -216,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 초기 상태 설정
     productNav.style.opacity = '0';
     productNav.style.visibility = 'hidden';
     productNav.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
