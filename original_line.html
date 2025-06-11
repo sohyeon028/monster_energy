@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="original_line.css">
+    <title>Monster Energy original line product</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+        <a href="index.html"><img src="images/main_page/로고_몬스터에너지.png" alt="몬스터 에너지 로고" /></a>
+        </div>
+    
+        <!-- 햄버거 버튼 -->
+        <div class="menu-toggle" onclick="toggleMenu()">
+        <img src="images/main_page/menu.png" alt="메뉴 열기" />
+        </div>
+    
+        <!-- 메뉴 -->
+        <div id="sideMenu" class="side-menu">
+        <button class="close-btn" onclick="toggleMenu()">✕</button>
+        <a href="#">제품 소개</a>
+        <a href="#">프로모션</a>
+        <a href="#">브랜드</a>
+        <a href="#">고객 지원</a>
+        </div>
+    </header>
+
+    <style>
+        
+    </style>
+    <div class="main-container">
+        <!-- 상단 라인 탭 -->
+        <div class="line-tabs">
+            <button class="active">오리지널 라인</button>
+            <button onclick="window.location.href='ultra_line.html'">울트라 라인</button>
+            <button onclick="window.location.href='juice_line.html'">주스 라인</button>
+        </div>
+        <!-- 제품명 탭 -->
+        <div class="product-tabs">
+            <button class="active">몬스터 에너지</button>
+            <button>몬스터 에너지 제로 슈거</button>
+        </div>
+        <!-- 본문 영역 -->
+        <div class="content-area">
+            <!-- 왼쪽: 이미지 -->
+            <div class="product-image-box">
+                <img id="productImage" src="images/음료 제품/오리지널_그린.png" alt="제품 이미지" />
+            </div>
+            <!-- 오른쪽: 설명 + 버튼 -->
+            <div class="desc-and-btn">
+                <div class="product-desc-box">
+                    <span id="productDescription">
+                        지구상에서 가장 쿨한 에너지 음료인 몬스터 에너지를 만나보세요. 몬스터 에너지만의 강력함을 부드럽고 상쾌한 블렌드에 담아, 넘치는 에너지를 선사합니다!
+                    </span>
+                </div>
+                <div class="button-area">
+                    <a id="mallBtn" href="#" target="_blank" class="custom-btn yellow">직영몰 바로가기</a>
+                    <a id="buyBtn" href="#" target="_blank" class="custom-btn white">구매하러가기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-top">
+            <a href="index.html"><img class="footer-logo" src="images/main_page/로고_몬스터에너지.png" alt="몬스터 에너지 로고" /></a>
+            <div class="footer-sns">
+                <img src="images/main_page/로고_유튜브.svg" alt="유튜브" />
+                <img src="images/main_page/로고_X.svg" alt="X(트위터)" />
+                <img src="images/main_page/로고_인스타.svg" alt="인스타그램" />
+                <img src="images/main_page/로고_페이스북.svg" alt="페이스북" />
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© Monster Energy Company All Rights Reserved Terms of Use Privacy Policy Cookies Policy Do Not Sell or Share My Personal Information</span>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+    <script src="index.js"></script>
+    <script>
+    function toggleMenu() {
+        const sideMenu = document.getElementById('sideMenu');
+        sideMenu.classList.toggle('show');
+    }
+
+    // ESC 키를 눌렀을 때도 메뉴가 닫히도록 추가
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.remove('show');
+        }
+    });
+    </script>
+</body>
+</html>

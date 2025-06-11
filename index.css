@@ -1,14 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #000;
     color: #fff;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 header {
@@ -20,7 +28,7 @@ header {
     position: relative;
     z-index: 10;
 }
-
+/***************************************/
 .logo img {
     height: 90px;
 }
@@ -75,9 +83,7 @@ header {
     margin: 15px;
     cursor: pointer;
 }
-
 /***************************************/
-
 .hero {
     position: relative;
     width: 100%;
@@ -99,7 +105,6 @@ header {
     width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.4);
 }
-
 /***************************************/
 .brand-philosophy {
     display: flex;
@@ -118,7 +123,6 @@ header {
     transition: all 0.8s ease-out;
 }
 
-/* 타이틀 */
 .title.animate-on-scroll {
     transform: translateY(100px);
     font-size: 140px;
@@ -128,12 +132,10 @@ header {
     font-style: normal;
 }
 
-/* brand-philosophy 섹션의 타이틀 */
 .brand-philosophy .title.animate-on-scroll {
     color: rgb(0, 255, 34); /* 기존 녹색 유지 */
 }
 
-/* energy-lineup-section 섹션의 타이틀 */
 .energy-lineup-section .title.animate-on-scroll {
     color: #ffffff; 
 }
@@ -184,13 +186,14 @@ header {
 .text-content {
     color: white;
     flex: 1;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
     padding-left: 20px;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
-
 /***************************************/
-
 .energy-lineup-section {
     margin-bottom: 180px;
     padding: 100px 20px;
@@ -237,51 +240,23 @@ header {
     transition: 0.4s ease;
 }
 
-/* 🟢 호버 효과 */
+.lineup-link{
+    text-decoration: none;
+    color: white;
+}
 
+/* 🟢 호버 효과 */
 .lineup-card:hover img {
     filter: drop-shadow(0 0 12px #00ff00);
 }
 
-/*.lineup-card.original:hover {
-    border-image: linear-gradient(45deg, #00ff00, #66ff66) 1;
-}*/
-
-.lineup-card.original:hover .label {
-    background: linear-gradient(80deg, #00ff00, #f0ff20);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-/*.lineup-card.ultra:hover {
-    border-image: linear-gradient(45deg, #dddddd, #ffffff) 1;
-}*/
-
-.lineup-card.ultra:hover .label {
-    background: linear-gradient(80deg, #727272, #ffffff);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-/*.lineup-card.juice:hover {
-    border-image: linear-gradient(45deg, #ff6a00, #ff99cc) 1;
-}*/
-
-.lineup-card.juice:hover .label {
-    background: linear-gradient(45deg, #ff6a00, #ff99cc);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-/* 🌀 스크롤 애니메이션 active 처리 */
+/* 스크롤 애니메이션 active 처리 */
 .animate-on-scroll.active {
     opacity: 150;
     transform: translateY(0);
     transition: all 1s ease-out;
 }
-
 /***************************************/
-
 .moments-section {
     /*padding: 60px 20px;*/
     text-align: center;
@@ -296,6 +271,17 @@ header {
     font-weight: 400;
 }
 
+.moments-title span {
+    opacity: 0;
+    display: inline-block;
+    transform: translateX(-30px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+.moments-title span.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 .moments-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2x2 배열을 위해 2개의 동일한 너비의 열 설정 */
@@ -303,6 +289,7 @@ header {
     max-width: 1920px; /* 최대 너비 설정 */
     height: 1000px;
     margin: 0 auto; /* 가운데 정렬 */
+    transition: opacity 0.7s;
 }
 
 .moments-grid iframe {
@@ -310,10 +297,7 @@ header {
     height: 100%;
     display: block;
 }
-
-
 /***************************************/
-
 .monster-army {
     background-color: #000000;
     color: #fff;
@@ -323,12 +307,38 @@ header {
 }
 
 .army-logo img {
+    background-color: #000000;
     max-width: 650px;
-    margin: 250px 0 150px 0; /*위 오른쪽 아래 왼쪽*/
+    margin: 180px 0 20px 0;
+}
+
+.army-logo {
+    transition: transform 0.9s cubic-bezier(0.4,0,0.2,1);
+    transform: scale(1);
+}
+
+.army-logo.shrink {
+    transform: scale(0.5);
+}
+
+.army-title,
+.army-title p {
+    opacity: 0;
+    transform: translateY(60px) scale(0.8);
+    transition: 
+        opacity 0.5s 0.1s cubic-bezier(0.4,0,0.2,1),
+        transform 0.5s 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.monster-army.show-army-title .army-title,
+.monster-army.show-army-title .army-title p {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .army-title h2 {
     letter-spacing: 1px;
+    margin-top: -250px;
     margin-bottom: 20px;
     font-size: 140px;
     color: rgb(0, 255, 34); /* 타이틀 색상 */
@@ -347,6 +357,7 @@ header {
 .army-mission {
     width: 1400px;
     margin: 0 auto;
+    margin-top: 150px;
     padding: 40px 0;
     border-radius: 24px;
     box-sizing: border-box;
@@ -374,7 +385,15 @@ header {
     flex-direction: column;
     align-items: center;
     width: 1000px; /* 각 아이템 너비 고정 (필요시 조절) */
-    text-align: center;
+    text-align: center;    
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.mission-item.visible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .mission-item img {
@@ -390,10 +409,8 @@ header {
     font-size: 20px;
     margin: 0;
 }
-
 /***************************************/
 .history-section {
-    /*background-color: #ff0000;*/
     color: #fff;
     padding: 100px 20px;
     text-align: left;
@@ -402,13 +419,14 @@ header {
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
+    margin-top: 80px;
     width: 100%;
 }
 
 .history-section h2 {
     font-size: 48px;
     font-weight: bold;
-    margin: 50px 0 40px 32px; /*위 오른쪽 아래 왼쪽*/
+    margin: 100px 0 40px 32px; /*위 오른쪽 아래 왼쪽*/
     align-self: flex-start;
     text-align: left;
     /*width: 100%;*/
@@ -432,6 +450,14 @@ header {
     gap: 40px;
     border-radius: 0;
     padding: 0;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.history-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .profile-img {
@@ -468,36 +494,38 @@ header {
     line-height: 1.6;
     margin-top: 12px;
 }
-
-
-
-
+/***************************************/
 .footer {
     width: 100vw;
-    background: #111;
+    background: #414141;
     padding: 32px 0 18px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
+    
 }
+
 .footer-top {
-    width: 80vw;
+
     max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 auto 18px auto;
 }
+
 .footer-logo {
     height: 60px;
     width: auto;
+    margin-right: 600px;
 }
+
 .footer-sns {
     display: flex;
     gap: 18px;
 }
+
 .footer-sns img {
     width: 38px;
     height: 38px;
@@ -506,9 +534,11 @@ header {
     transition: opacity 0.2s;
     cursor: pointer;
 }
+
 .footer-sns img:hover {
     opacity: 1;
 }
+
 .footer-bottom {
     width: 100vw;
     text-align: center;
@@ -517,6 +547,7 @@ header {
     opacity: 0.85;
     margin-top: 10px;
 }
+
 @media (max-width: 700px) {
     .footer-top {
         flex-direction: column;
@@ -533,4 +564,110 @@ header {
     .footer-bottom {
         font-size: 12px;
     }
+}
+/***************************************/
+.product-nav {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px 15px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.product-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-nav li {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.product-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+}
+
+.product-nav a:hover {
+    background-color: #fff;
+    color: #000;
+    transform: scale(1.1);
+}
+
+/* 스크롤 부드럽게 */
+html {
+    scroll-behavior: smooth;
+}
+
+.section-nav {
+    position: fixed;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 1200;
+}
+.section-nav button {
+    background: #111;
+    color: #adff2f;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 4px;
+    transition: background 0.2s, color 0.2s;
+    opacity: 0.85;
+}
+.section-nav button:hover {
+    background: #adff2f;
+    color: #111;
+    opacity: 1;
+}
+
+.section-dots {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    gap: 22px;
+    z-index: 1200;
+}
+.section-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #222;
+    border: 2px solid #adff2f;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: background 0.2s, opacity 0.2s, border 0.2s;
+    position: relative;
+}
+.section-dots .dot:hover,
+.section-dots .dot.active {
+    background: #adff2f;
+    opacity: 1;
+    border: 2px solid #fff;
+}
+.section-dots .dot::after {
+    display: none;
 }
