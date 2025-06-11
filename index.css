@@ -193,6 +193,16 @@ header {
     font-weight: 400;
     font-style: normal;
 }
+
+.section-dots.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.section-dots {
+    transition: opacity 0.3s;
+}
 /***************************************/
 .energy-lineup-section {
     margin-bottom: 180px;

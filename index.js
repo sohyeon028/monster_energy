@@ -375,3 +375,20 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateTitle);
     animateTitle();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dots = document.querySelector('.section-dots');
+    window.addEventListener('scroll', function() {
+        // 히어로 섹션이 화면에 보이면 도트 숨김
+        const hero = document.getElementById('hero');
+        if (!hero || !dots) return;
+        const rect = hero.getBoundingClientRect();
+        if (rect.bottom > 80) { // 히어로 섹션이 아직 화면에 많이 보이면 숨김
+            dots.classList.add('hide');
+        } else {
+            dots.classList.remove('hide');
+        }
+    });
+    // 페이지 로드시도 체크
+    window.dispatchEvent(new Event('scroll'));
+});
