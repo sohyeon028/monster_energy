@@ -1,12 +1,20 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #000;
     color: #fff;
+    min-height: 100vh;
+}
+
+html, body {
+    width: 1920px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 header {
@@ -23,58 +31,40 @@ header {
     height: 90px;
 }
 
-.menu-toggle img{
-    cursor: pointer;
+.category-nav {
+    padding-right: 30px;
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 60px;
-    height: auto;
-    cursor: pointer;
+    align-items: center;
 }
 
-.side-menu {
-    position: fixed;
-    top: 0;
-    right: -200px; /* 처음에는 화면 밖에 숨김 */
-    width: 180px;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.95);
+.category-nav ul {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    gap: 20px;
-    transition: right 0.4s ease;
-    z-index: 1000;
+    list-style: none;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
 }
 
-.side-menu.show {
-    right: 0; /* 열릴 때 오른쪽으로 슬라이드 */
-}
-
-.side-menu a {
+.category-nav a {
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    font-style: normal;
     color: white;
-    font-size: 1.3rem;
     text-decoration: none;
-    transition: color 0.2s ease;
+    font-size: 1.3rem;
 }
 
-.side-menu a:hover {
+.category-nav a:hover {
     color: #adff2f;
 }
 
-.close-btn {
-    align-self: flex-end;
-    font-size: 3rem;
-    background: none;
-    color: white;
-    border: none;
-    margin: 15px;
-    cursor: pointer;
+@media (max-width: 768px) {
+    .category-nav {
+        display: none;
+    }
 }
-
-
 /*******구분******/
 .main-container {
     width: 100vw;
@@ -211,31 +201,33 @@ header {
 }
 
 .footer {
-    width: 100vw;
-    background: #111;
-    padding: 32px 0 18px 0;
+    width: 1920px;
+    background: #3a3a3a;
+    padding: 20px 15px 10px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    margin-top: 40px;
+    margin-left: -30px;
+    margin-bottom: -60px;
 }
+
 .footer-top {
-    width: 80vw;
-    max-width: 1200px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin: 0 auto 18px auto;
+    gap: 100px; /* Adjust this value as needed */
 }
+
 .footer-logo {
     height: 60px;
     width: auto;
+    margin-right: 490px;
 }
+
 .footer-sns {
     display: flex;
     gap: 18px;
 }
+
 .footer-sns img {
     width: 38px;
     height: 38px;
@@ -244,9 +236,11 @@ header {
     transition: opacity 0.2s;
     cursor: pointer;
 }
+
 .footer-sns img:hover {
     opacity: 1;
 }
+
 .footer-bottom {
     width: 100vw;
     text-align: center;
@@ -254,23 +248,6 @@ header {
     font-size: 15px;
     opacity: 0.85;
     margin-top: 10px;
-}
-@media (max-width: 700px) {
-    .footer-top {
-        flex-direction: column;
-        gap: 18px;
-        align-items: center;
-    }
-    .footer-logo {
-        height: 44px;
-    }
-    .footer-sns img {
-        width: 30px;
-        height: 30px;
-    }
-    .footer-bottom {
-        font-size: 12px;
-    }
 }
 
 /* 버튼 영역 스타일 */
