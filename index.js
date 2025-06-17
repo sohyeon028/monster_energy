@@ -163,21 +163,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(armyTitle);
     }
 
-    // moments-section 아래에서 위로 등장 효과
-    const momentsSection = document.querySelector('.moments-section');
-    if (momentsSection) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                } else {
-                    entry.target.classList.remove('visible');
-                }
-            });
-        }, { threshold: 0.3 });
-        observer.observe(momentsSection);
-    }
-
     // animate-on-scroll (기존 스크롤 애니메이션)
     const observerOptions = {
         threshold: 0.3,
@@ -216,11 +201,194 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 초기 상태 설정
     productNav.style.opacity = '0';
     productNav.style.visibility = 'hidden';
     productNav.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('load', handleScroll);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const armySection = document.querySelector('.monster-army');
+    if (!armySection) return;
+    const armyLogo = armySection.querySelector('.army-logo');
+    let isShrunk = false;
+
+    function handleScroll() {
+        const rect = armySection.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.4) {
+            if (!isShrunk) {
+                armyLogo.classList.add('shrink');
+                setTimeout(() => {
+                    armySection.classList.add('show-army-title');
+                }, 700);
+                isShrunk = true;
+            }
+        } else {
+            if (isShrunk) {
+                armyLogo.classList.remove('shrink');
+                armySection.classList.remove('show-army-title');
+                isShrunk = false;
+            }
+        }
+    }
+    window.addEventListener('scroll', handleScroll);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const missionItems = document.querySelectorAll('.mission-item');
+    const section = document.querySelector('.army-mission');
+    if (!section) return;
+
+    let timeoutIds = [];
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // 순차적으로 등장
+                missionItems.forEach((item, idx) => {
+                    timeoutIds[idx] = setTimeout(() => {
+                        item.classList.add('visible');
+                    }, idx * 500);
+                });
+            } else {
+                // 사라지게
+                timeoutIds.forEach(id => clearTimeout(id));
+                missionItems.forEach(item => item.classList.remove('visible'));
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(section);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const historyItems = document.querySelectorAll('.history-item');
+    if (!historyItems.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    historyItems.forEach(item => observer.observe(item));
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.section-nav button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = btn.getAttribute('data-target');
+            const section = document.getElementById(targetId) || document.querySelector('.' + targetId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.section-dots .dot').forEach(dot => {
+        dot.addEventListener('click', function() {
+            const targetId = dot.getAttribute('data-target');
+            const section = document.getElementById(targetId) || document.querySelector('.' + targetId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // 활성화 표시 (스크롤 위치에 따라)
+    const sectionIds = [
+        'hero',
+        'brand-philosophy',
+        'energy-lineup',
+        'moments',
+        'monster-army'
+    ];
+    const dots = document.querySelectorAll('.section-dots .dot');
+    window.addEventListener('scroll', function() {
+        let found = false;
+        sectionIds.forEach((id, idx) => {
+            const sec = document.getElementById(id) || document.querySelector('.' + id);
+            if (sec) {
+                const rect = sec.getBoundingClientRect();
+                if (!found && rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) {
+                    dots.forEach(d => d.classList.remove('active'));
+                    dots[idx].classList.add('active');
+                    found = true;
+                }
+            }
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const title = document.getElementById('moments-title');
+    const grid = document.getElementById('moments-grid');
+    if (!title || !grid) return;
+
+    // 텍스트를 한 글자씩 span으로 감싸기
+    const text = title.textContent;
+    title.textContent = '';
+    [...text].forEach(char => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        title.appendChild(span);
+    });
+
+    // 스크롤로 moments-section이 보이면 애니메이션 반복 적용
+    const section = document.querySelector('.moments-section');
+    let animating = false;
+    function animateTitle() {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.7 && rect.bottom > 0) {
+            if (!animating) {
+                animating = true;
+                const spans = title.querySelectorAll('span');
+                spans.forEach(span => span.classList.remove('visible'));
+                grid.style.opacity = 0;
+                spans.forEach((span, idx) => {
+                    setTimeout(() => {
+                        span.classList.add('visible');
+                        if (idx === spans.length - 1) {
+                            setTimeout(() => {
+                                grid.style.opacity = 1;
+                            }, 200);
+                        }
+                    }, idx * 60);
+                });
+            }
+        } else {
+            animating = false;
+            // 텍스트와 영상 다시 숨김
+            const spans = title.querySelectorAll('span');
+            spans.forEach(span => span.classList.remove('visible'));
+            grid.style.opacity = 0;
+        }
+    }
+    window.addEventListener('scroll', animateTitle);
+    animateTitle();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dots = document.querySelector('.section-dots');
+    window.addEventListener('scroll', function() {
+        // 히어로 섹션이 화면에 보이면 도트 숨김
+        const hero = document.getElementById('hero');
+        if (!hero || !dots) return;
+        const rect = hero.getBoundingClientRect();
+        if (rect.bottom > 80) { // 히어로 섹션이 아직 화면에 많이 보이면 숨김
+            dots.classList.add('hide');
+        } else {
+            dots.classList.remove('hide');
+        }
+    });
+    // 페이지 로드시도 체크
+    window.dispatchEvent(new Event('scroll'));
 });
