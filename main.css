@@ -4,6 +4,7 @@
 * {
     margin: 0;
     padding: 0;
+    cursor: url(images/main_page/logo_cursor.png), auto;
 }
 
 body {
@@ -32,6 +33,7 @@ header {
 
 .logo img {
     height: 90px;
+    cursor: pointer;
 }
 
 .category-nav {
@@ -60,6 +62,7 @@ header {
 }
 
 .category-nav a:hover {
+    cursor: pointer;
     color: #adff2f;
 }
 
@@ -226,6 +229,7 @@ header {
 .lineup-card img {
     width: 100%;
     transition: 0.4s ease;
+    cursor: pointer;
 }
 
 .lineup-card .label {
@@ -519,6 +523,7 @@ header {
     height: 60px;
     width: auto;
     margin-right: 490px;
+    cursor: pointer;
 }
 
 .footer-sns {
@@ -588,6 +593,7 @@ header {
     background-color: #fff;
     color: #000;
     transform: scale(1.1);
+    cursor: pointer;
 }
 /***************************************/
 .section-nav {
@@ -648,6 +654,7 @@ header {
     background: #adff2f;
     opacity: 1;
     border: 2px solid #fff;
+    cursor: pointer;
 }
 
 .section-dots .dot::after {

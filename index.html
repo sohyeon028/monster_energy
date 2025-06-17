@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: url(images/main_page/logo_cursor.png), auto;
         }
 
         body {
@@ -155,11 +156,12 @@
         
         // 시간과 퍼센트 설정 (초, 퍼센트) - 짧게 조정
         const chargeSteps = [
-            { time: 0.5, percentage: 15 },
-            { time: 1.0, percentage: 35 },
-            { time: 1.5, percentage: 60 },
-            { time: 2.0, percentage: 85 },
-            { time: 2.5, percentage: 100 }
+            { time: 0.3, percentage: 15 },
+            { time: 0.8, percentage: 35 },
+            { time: 1.4, percentage: 53 },
+            { time: 1.8, percentage: 78 },
+            { time: 2.3, percentage: 92 },
+            { time: 2.7, percentage: 100 }
         ];
 
         function updateBattery(percentage) {
