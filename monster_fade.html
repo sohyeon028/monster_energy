@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>몬스터 에너지 텍스트 애니메이션</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="monster_fade.css">
+</head>
+<body>
+    <div class="container">
+        <div class="monster-image">
+            <img src="images/main_page/몬스터 누끼.png" alt="몬스터 에너지">
+        </div>
+        <div class="text-animation">
+            <div class="line">
+                <span class="letter">M</span>
+                <span class="letter">O</span>
+                <span class="letter">N</span>
+                <span class="letter">S</span>
+                <span class="letter">T</span>
+                <span class="letter">E</span>
+                <span class="letter">R</span>
+            </div>
+            <div class="line">
+                <span class="letter">E</span>
+                <span class="letter">N</span>
+                <span class="letter">E</span>
+                <span class="letter">R</span>
+                <span class="letter">G</span>
+                <span class="letter">Y</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 마지막 글자의 애니메이션이 끝나는 시간 (3.3초) + 3초 대기
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 6300); // 3.3초 + 3초 = 6.3초
+    </script>
+</body>
+</html> 
