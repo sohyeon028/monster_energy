@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(armyTitle);
     }
 
-    // animate-on-scroll (기존 스크롤 애니메이션)
+    // animate-on-scroll 
     const observerOptions = {
         threshold: 0.3,
         rootMargin: "0px"

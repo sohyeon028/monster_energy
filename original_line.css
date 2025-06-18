@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    cursor: url(images/main_page/logo_cursor.png), auto;
 }
 
 body {
@@ -29,6 +30,7 @@ header {
 
 .logo img {
     height: 90px;
+    cursor: pointer;
 }
 
 .category-nav {
@@ -58,6 +60,7 @@ header {
 
 .category-nav a:hover {
     color: #adff2f;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -221,6 +224,7 @@ header {
     height: 60px;
     width: auto;
     margin-right: 490px;
+    cursor: pointer;
 }
 
 .footer-sns {
@@ -276,6 +280,7 @@ header {
 .custom-btn.yellow:hover {
     background: #ffe600;
     color: #222;
+    cursor: pointer;
 }
 
 .custom-btn.white {
@@ -286,4 +291,5 @@ header {
 .custom-btn.white:hover {
     background: #fff;
     color: #222;
+    cursor: pointer;
 }
