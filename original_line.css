@@ -9,6 +9,10 @@ body {
     background-color: #000;
     color: #fff;
     min-height: 100vh;
+    background-image: url('images/main_page/mobileHeaderBg.png');
+    background-size: cover;         /* 이미지를 화면에 꽉 차게 */
+    background-repeat: no-repeat;   /* 반복 없이 */
+    background-position: center;    /* 중앙 정렬 */
 }
 
 html, body {
@@ -26,6 +30,7 @@ header {
     background-color: #000;
     position: relative;
     z-index: 10;
+    overflow: visible;
 }
 
 .logo img {
@@ -70,15 +75,29 @@ header {
 }
 /*******구분******/
 .main-container {
+    position: relative;
     width: 100vw;
     height: 700px;
-    background: #000000;
-    padding: 20px 0 0 0; /*헤더와 라인 공간 조절*/
+    background: url('images/main_page/mobileHeaderBg.png') center/cover no-repeat #000000;
+    padding: 20px 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 0px;
+    overflow: hidden;
+}
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: inherit;
+    filter: blur(12px) brightness(0.5);
+    z-index: 0;
+}
+.main-container > * {
+    position: relative;
+    z-index: 1;
 }
 
 .line-tabs {
@@ -292,4 +311,111 @@ header {
     background: #fff;
     color: #222;
     cursor: pointer;
+}
+
+.lightning-effect {
+    position: absolute;
+    top: 0px;
+    right: 60px;
+    width: 60px;
+    height: 120px;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    animation: lightning-flash 4s infinite;
+}
+@keyframes lightning-flash {
+    0%, 97%, 100% { opacity: 0; }
+    98% { opacity: 1; filter: drop-shadow(0 0 30px #fff) brightness(2); }
+    99% { opacity: 0.7; }
+}
+
+.lightning-effect.left {
+    position: absolute;
+    left: 2vw;
+    top: 120px;
+    z-index: 2;
+    opacity: 0;
+    animation: lightning-flash-left 5s infinite;
+}
+.lightning-effect.right {
+    position: absolute;
+    right: 2vw;
+    top: 120px;
+    z-index: 2;
+    opacity: 0;
+    animation: lightning-flash-right 6s infinite;
+}
+@keyframes lightning-flash-left {
+    0%, 96%, 100% { opacity: 0; }
+    97% { opacity: 1; filter: drop-shadow(0 0 40px #fff700) brightness(2); }
+    98% { opacity: 0.7; }
+    99% { opacity: 0.2; }
+}
+@keyframes lightning-flash-right {
+    0%, 93%, 100% { opacity: 0; }
+    94% { opacity: 1; filter: drop-shadow(0 0 40px #fff700) brightness(2); }
+    96% { opacity: 0.7; }
+    98% { opacity: 0.2; }
+}
+
+.lightning-effect.left-up {
+    position: absolute;
+    left: 3vw;
+    bottom: 0;
+    z-index: 3;
+    opacity: 0;
+    animation: lightning-up-flash-left 3.5s infinite;
+}
+.lightning-effect.right-up {
+    position: absolute;
+    right: 3vw;
+    bottom: 0;
+    z-index: 3;
+    opacity: 0;
+    animation: lightning-up-flash-right 4.2s infinite;
+}
+@keyframes lightning-up-flash-left {
+    0%, 90%, 100% {
+        opacity: 0;
+        transform: translateY(40px) scaleY(0.7);
+        filter: blur(2px);
+    }
+    92% {
+        opacity: 1;
+        filter: drop-shadow(0 0 40px #fff700) brightness(2);
+        transform: translateY(-30px) scaleY(1.1);
+    }
+    94% {
+        opacity: 0.7;
+        filter: blur(0px);
+        transform: translateY(-60px) scaleY(1.2);
+    }
+    96% {
+        opacity: 0;
+        filter: blur(6px);
+        transform: translateY(-100px) scaleY(1.3);
+    }
+}
+@keyframes lightning-up-flash-right {
+    0%, 92%, 100% {
+        opacity: 0;
+        transform: translateY(40px) scaleY(0.7);
+        filter: blur(2px);
+    }
+    94% {
+        opacity: 1;
+        filter: drop-shadow(0 0 40px #fff700) brightness(2);
+        transform: translateY(-30px) scaleY(1.1);
+    }
+    96% {
+        opacity: 0.7;
+        filter: blur(0px);
+        transform: translateY(-60px) scaleY(1.2);
+    }
+    98% {
+        opacity: 0;
+        filter: blur(6px);
+        transform: translateY(-100px) scaleY(1.3);
+    }
 }

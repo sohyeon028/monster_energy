@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(armyTitle);
     }
 
-    // animate-on-scroll (기존 스크롤 애니메이션)
+    // animate-on-scroll 
     const observerOptions = {
         threshold: 0.3,
         rootMargin: "0px"
@@ -391,4 +391,72 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     // 페이지 로드시도 체크
     window.dispatchEvent(new Event('scroll'));
+});
+
+// 섹션 도트 네비게이션
+document.addEventListener('DOMContentLoaded', function() {
+    const dots = document.querySelectorAll('.section-dots .dot');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveDot() {
+        const scrollPosition = window.scrollY;
+
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+            }
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            const targetSection = document.querySelector(`#${dot.dataset.target}`);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    window.addEventListener('scroll', updateActiveDot);
+    window.addEventListener('load', updateActiveDot);
+});
+
+// 제품 라인 내비게이션 활성화
+document.addEventListener('DOMContentLoaded', function() {
+    const productLineButtons = document.querySelectorAll('.product-line-nav button');
+    const currentPage = window.location.pathname;
+
+    productLineButtons.forEach(button => {
+        const buttonHref = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+        if (currentPage.includes(buttonHref)) {
+            button.classList.add('active');
+        }
+    });
+});
+
+// 제품 라인 내비게이션 스크롤 효과
+document.addEventListener('DOMContentLoaded', function() {
+    const productLineNav = document.querySelector('.product-line-nav');
+    const sectionDots = document.querySelector('.section-dots');
+    const heroSection = document.querySelector('.hero');
+    
+    function handleScroll() {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition >= heroBottom) {
+            productLineNav.classList.add('visible');
+            sectionDots.classList.add('visible');
+        } else {
+            productLineNav.classList.remove('visible');
+            sectionDots.classList.remove('visible');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('load', handleScroll);
 });
